@@ -1,1 +1,1 @@
-module.exports = require('bindings')('system_idle_time');
+module.exports = require('bindings')('system_idle_time.node');

@@ -27,20 +27,17 @@ uint32_t SystemIdleTime(void) {
   }
 
   if (!has_extension) {
-    goto out;
+    wnd = RootWindow(dpy, DefaultScreen(dpy));
+
+    if (!wnd) {
+      idle_time = 60*60*1000;
+      goto out;
+    }
+
+    XScreenSaverQueryInfo(dpy, wnd, &info);
+    idle_time = info.idle;
   }
 
-  wnd = RootWindow(dpy, DefaultScreen(dpy));
-
-  if (!wnd) {
-    idle_time = 60*60*1000;
-    goto out;
-  }
-
-  XScreenSaverQueryInfo(dpy, wnd, &info);
-  idle_time = info.idle;
-
-out:
   XCloseDisplay(dpy);
   return idle_time;
 }
