@@ -1,4 +1,9 @@
-declare var _default: {
-    getIdleTime(): number;
-};
-export default _default;
+interface SystemIdleTime {
+  getIdleTime(): number
+}
+
+declare var HarvestSystemIdleTime: SystemIdleTime
+
+declare module '@harvesthq/system-idle-time' {
+  export = HarvestSystemIdleTime
+}
